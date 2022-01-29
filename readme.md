@@ -24,10 +24,16 @@ Your image will now be listed by Docker
 You can chech using `docker images`
 
 Alternatively you can build directly from github repository path:
-`docker build --pull --no-cache github.com/thomaskokholm/imgsharp`
+`docker build github.com/thomaskokholm/imgsharp --pull --no-cache -t thomaskohkolm/imgsharp`
 
 ### Rung the imgsharp image
 
 `docker run -p 8084:3000 -d --name imgsharp thomaskokholm/imgsharp`
 
 Note that using -d flag the container runs in detached mode, leaving imgsharp running in the background. The -p flag redirects the public port (8084) to a private/internal port (3000) inside the container. The --name flag names the running container process "imgsharp".
+
+## Usage and Docs
+
+Example usage:
+
+http://localhost:3000/tx/https://images.unsplash.com/photo-1642103360071-34bd4e1902b0?scale=crop&w=1600&aspect=16:9
