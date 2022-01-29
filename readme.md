@@ -26,7 +26,7 @@ You can chech using `docker images`
 Alternatively you can build directly from github repository path:
 `docker build github.com/thomaskokholm/imgsharp --pull --no-cache -t thomaskohkolm/imgsharp`
 
-### Rung the imgsharp image
+### Run the imgsharp image
 
 `docker run -p 8084:3000 -d --name imgsharp thomaskokholm/imgsharp`
 
