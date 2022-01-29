@@ -17,6 +17,9 @@ app.get("/tx/*", async (req, res) => {
             const query = req.query;
             console.log("tx", query, uri);
 
+            const ref = req.get('Referrer')
+            console.log("Referrer", ref);
+            res.header['x-imgsharp-referrer', ref]
             axios({ url: uri, responseType: "arraybuffer" })
                 .then((arraybuffer) => {
                     const data = arraybuffer.data;
