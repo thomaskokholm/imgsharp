@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const helmet = require("helmet");
 const axios = require("axios");
@@ -5,6 +6,18 @@ const sharp = require("sharp");
 const app = express();
 
 app.use(helmet());
+
+app.use((_req, res, next) => {
+    if (process.env.ALLOWED_ORIGINS) {
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+    } else {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 
 app.get("/", function (_req, res) {
     res.send("Imgsharp - a high performing Node.js Image Processing Service.");
