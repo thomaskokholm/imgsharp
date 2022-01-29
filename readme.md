@@ -32,6 +32,11 @@ Alternatively you can build directly from github repository path:
 
 Note that using -d flag the container runs in detached mode, leaving imgsharp running in the background. The -p flag redirects the public port (8084) to a private/internal port (3000) inside the container. The --name flag names the running container process "imgsharp".
 
+### Environment variable
+
+To define CORS rules for your imgsharp service you can create an `.env` file next to your Dockerfile.
+Example env definition: ALLOWED_ORIGINS=subdomain.mydomain.com
+
 ## Usage and Docs
 
 Example usage:
