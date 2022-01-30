@@ -37,6 +37,13 @@ Note that using -d flag the container runs in detached mode, leaving imgsharp ru
 To define CORS rules for your imgsharp service you can create an `.env` file next to your Dockerfile.
 Example env definition: ALLOWED_ORIGINS=subdomain.mydomain.com
 
+To define Rate limit rule for your imgsharp service you can create an `.env` file next to your Dockerfile.
+Example env definition:
+RATE_LIMIT_TIME=15000
+RATE_LIMIT_AMOUNT=100
+
+This will prevent any givin ip to request more than a 100 times per 15 minutes
+
 ## Usage and Docs
 
 Example usage:

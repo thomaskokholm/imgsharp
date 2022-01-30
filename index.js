@@ -3,6 +3,7 @@ const express = require("express");
 const helmet = require("helmet");
 const axios = require("axios");
 const sharp = require("sharp");
+const rateLimit = require('express-rate-limit');
 const app = express();
 
 app.use(helmet());
@@ -19,6 +20,20 @@ app.use((_req, res, next) => {
 });
 
 
+
+
+if (process.env.RATE_LIMIT_TIME && process.env.RATE_LIMIT_AMOUNT) {
+
+    const limiter = rateLimit({
+        windowMs: 60 * parseInt(process.env.RATE_LIMIT_TIME), // in example 60 * 15000 = 15 minutes
+        max: parseInt(process.env.RATE_LIMIT_AMOUNT), // Limit each IP to X-amount of requests per X-amount of minutes (windowMs)
+        standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+        legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    })
+
+    // Apply the rate limiting middleware to all requests
+    app.use(limiter);
+}
 app.get("/", function (_req, res) {
     res.send("Imgsharp - a high performing Node.js Image Processing Service.");
 });
